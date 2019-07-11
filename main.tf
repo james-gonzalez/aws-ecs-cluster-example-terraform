@@ -99,7 +99,7 @@ resource "aws_autoscaling_group" "asg" {
   name = "example-ecs-asg"
 
   launch_configuration = "${aws_launch_configuration.instance.name}"
-  vpc_zone_identifier = [aws_subnet.test.id]
+  vpc_zone_identifier = module.vpc.private_subnets
   max_size = "1"
   min_size = "1"
   desired_capacity = "1"

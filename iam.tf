@@ -40,7 +40,7 @@ data "aws_iam_policy_document" "default" {
   }
 
   statement {
-    Effect = "Allow"
+    effect = "Allow"
     actions = [
       "ecs:CreateCluster",
       "ecs:DeregisterContainerInstance",
@@ -55,6 +55,20 @@ data "aws_iam_policy_document" "default" {
       "ecr:BatchGetImage",
       "logs:CreateLogStream",
       "logs:PutLogEvents"
+    ]
+    resources = ["*"]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "ec2:AuthorizeSecurityGroupIngress",
+      "ec2:Describe*",
+      "elasticloadbalancing:DeregisterInstancesFromLoadBalancer",
+      "elasticloadbalancing:DeregisterTargets",
+      "elasticloadbalancing:Describe*",
+      "elasticloadbalancing:RegisterInstancesWithLoadBalancer",
+      "elasticloadbalancing:RegisterTargets"
     ]
     resources = ["*"]
   }
