@@ -27,3 +27,9 @@ variable "egress_cidr" {
   type    = list
   default = ["0.0.0.0/0"]
 }
+
+variable "additional_user_data_script" {
+  type        = "string"
+  description = "extra stuff you want to put into your user-data.sh scripts"
+  default     = "echo example ecs cluster being provisioned"
+}

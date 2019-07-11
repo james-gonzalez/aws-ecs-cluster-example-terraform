@@ -36,6 +36,7 @@ terraform apply
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| additional\_user\_data\_script | extra stuff you want to put into your user-data.sh scripts | string | `"echo example ecs cluster being provisioned"` | no |
 | ecs\_cluster\_name | Default name of the ECS cluster | string | `"jamesg-test-cluster"` | no |
 | egress\_cidr |  | list | `[ "0.0.0.0/0" ]` | no |
 | ingress\_cidr |  | list | `[ "0.0.0.0/0" ]` | no |
@@ -47,6 +48,9 @@ terraform apply
 
 | Name | Description |
 |------|-------------|
+| cluster\_id |  |
+| instance\_role |  |
+| instance\_sg\_id |  |
 | this\_iam\_instance\_profile\_id |  |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
