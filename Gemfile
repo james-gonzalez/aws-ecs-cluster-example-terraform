@@ -4,3 +4,7 @@ source "https://rubygems.org/" do
     "~> 4.0"
   )
 end
+
+gem 'nokogiri'
+gem 'rack', '~> 2.0.1'
+gem 'rspec'
