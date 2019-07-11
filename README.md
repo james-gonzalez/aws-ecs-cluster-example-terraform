@@ -3,7 +3,7 @@
 This is an example bit of code written in Terraform at version `0.12.3`. This shows you the fundamentals of Terraform and some cool little utilities you can use to maximise your development process and ensure maximum code quality in an automated fashion.
 
 ## Features
-* EC2 Instance
+* Creation of an ECS Cluster with a simple/example service
 * Automated Semantic Versioning/Tagging and updating of CHANGELOG.md
 * Creation of an S3 bucket for data storage
 * Attachment of an IAM policy to acccess that bucket
