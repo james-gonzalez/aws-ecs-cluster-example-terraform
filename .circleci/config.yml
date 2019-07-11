@@ -17,5 +17,7 @@ jobs:
             terraform --version
 
       - run:
-          name: Print the Current Time
-          command: date
+          name: Run Terraform plan
+          command: |
+            terraform init
+            terraform plan
