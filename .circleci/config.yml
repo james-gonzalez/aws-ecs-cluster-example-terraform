@@ -1,0 +1,20 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: debian:stretch
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install pre-reqs
+          command: |
+            export TF_VERSION="0.12.3"
+            curl -skO -L https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip
+            unzip -o terraform_${TF_VERSION}_linux_amd64.zip -d /usr/local/bin/
+            terraform --version
+
+      - run:
+          name: Print the Current Time
+          command: date
