@@ -11,6 +11,7 @@ jobs:
           name: Install pre-reqs
           command: |
             export TF_VERSION="0.12.3"
+            apt-get update && apt-get install curl unzip
             curl -skO -L https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip
             unzip -o terraform_${TF_VERSION}_linux_amd64.zip -d /usr/local/bin/
             terraform --version
