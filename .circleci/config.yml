@@ -21,4 +21,7 @@ jobs:
           command: |
             terraform init
             terraform plan
-            ruby -v
+      - run:
+          name: Install ruby stuff + TF Kitchen
+          command: |
+            gem install kitchen-terraform --version 4.0.0
