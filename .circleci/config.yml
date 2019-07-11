@@ -3,10 +3,8 @@ jobs:
   build:
     docker:
       - image: debian:stretch
-
     steps:
       - checkout
-
       - run:
           name: Install pre-reqs
           command: |
@@ -15,7 +13,6 @@ jobs:
             curl -skO -L https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip
             unzip -o terraform_${TF_VERSION}_linux_amd64.zip -d /usr/local/bin/
             terraform --version
-
       - run:
           name: Run Terraform plan
           command: |
@@ -25,3 +22,5 @@ jobs:
           name: Install ruby stuff + TF Kitchen
           command: |
             gem install kitchen-terraform --version 4.0.0
+      - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+          path: test_results
