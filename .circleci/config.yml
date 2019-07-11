@@ -21,8 +21,7 @@ jobs:
       - run:
           name: Install ruby stuff + TF Kitchen
           command: |
-            gem install bundler
-            bundle install
+            gem install kitchen-terraform
       - run:
           name: Move test result files into tests path
           command: |
