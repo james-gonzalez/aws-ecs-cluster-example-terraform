@@ -1,15 +1,15 @@
 resource "aws_iam_role" "default" {
-  name               = "test_role"
+  name               = "ecs_role"
   assume_role_policy = data.aws_iam_policy_document.trust.json
 }
 
 resource "aws_iam_instance_profile" "default" {
-  name = "default_profile"
+  name = "ecs_instance_profile"
   role = aws_iam_role.default.name
 }
 
 resource "aws_iam_role_policy" "default" {
-  name   = "default-policy"
+  name   = "ecs-default-policy"
   role   = aws_iam_role.default.name
   policy = data.aws_iam_policy_document.default.json
 }
