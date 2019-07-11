@@ -21,3 +21,4 @@ jobs:
           command: |
             terraform init
             terraform plan
+            ruby -v
