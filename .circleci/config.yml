@@ -26,7 +26,7 @@ jobs:
       - run:
           name: Move test result files into tests path
           command: |
-            find /var/lib/gems/ -name mkmf.log -exec cp "{}" project/test_results/ \;
+            find /var/lib/gems/ -name mkmf.log -exec cp "{}" ~/project/test_results/ \;
 
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: test_results
