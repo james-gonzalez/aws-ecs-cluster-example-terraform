@@ -20,7 +20,7 @@ jobs:
           name: Install pre-reqs
           command: |
             export TF_VERSION="0.12.3"
-            apt-get update && apt-get -y install curl unzip gnupg2 procps jq
+            apt-get update && apt-get -y install curl unzip gnupg2 procps jq curl
             curl -skO -L https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip
             unzip -o terraform_${TF_VERSION}_linux_amd64.zip -d /usr/local/bin/
             terraform --version
@@ -36,6 +36,7 @@ jobs:
           command: |
             cd docker && docker build -t python-upload-s3 .
             ECR_REPO=$(cat ecr_repo.txt)
+            $(aws ecr get-login --no-include-email --region eu-west-1)
             docker tag python-upload-s3:latest ${ECR_REPO}/python-upload-s3:1.0
             docker push ${ECR_REPO}/python-upload-s3:1.0
       # - run:
