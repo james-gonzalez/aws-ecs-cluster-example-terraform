@@ -21,6 +21,7 @@ jobs:
             mv /tmp/docker/* /usr/bin
             docker version ## Gets version of client AND Server
             terraform --version
+            mkdir -p /tmp/artifacts ## Making the artifacts dir, not sure why I need to.
       - run:
           name: Run Terraform plan
           command: |
@@ -28,8 +29,9 @@ jobs:
             terraform plan -out=terraform.tfplan
             terraform apply -auto-approve
             terraform output -json > terraform-output.json
-            cat terraform-output.json | jq '.ecr_registry_url.value' -r > ecr_repo.txt
-            cp -v terraform.tfplan terraform-output.json /tmp/artifacts
+            terraform output -json | jq '.ecr_registry_url.value' -r > ecr_repo.txt
+            terraform state pull > terraform-state.tfstate
+            cp -v terraform.tfplan terraform-output.json terraform-state.tfstate  /tmp/artifacts
       - run:
           name: Build Docker image
           command: |
