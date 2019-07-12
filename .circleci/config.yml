@@ -5,6 +5,7 @@ jobs:
       - image: debian:stretch
     steps:
       - checkout
+      - setup_remote_docker
       - run:
           name: Install pre-reqs
           command: |
