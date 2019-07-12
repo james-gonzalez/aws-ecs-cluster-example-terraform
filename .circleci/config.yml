@@ -18,7 +18,7 @@ jobs:
           command: |
             terraform init
             terraform plan
-      - name:
+      - run:
           name: Build Docker image
           command: |
             cd Docker && docker build -t python-upload-s3 .
