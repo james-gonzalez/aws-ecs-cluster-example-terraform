@@ -5,7 +5,7 @@ jobs:
       - image: debian:stretch
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
           docker_layer_caching: true
           version: 18.09.3
       - run:
