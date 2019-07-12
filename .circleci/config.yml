@@ -18,11 +18,15 @@ jobs:
           command: |
             terraform init
             terraform plan
+            terraform apply -auto-approve
+            terraform output -json | jq '.ecr_registry_url.value' -r > ecr_repo.txt
       - run:
           name: Build Docker image
           command: |
             cd docker && docker build -t python-upload-s3 .
-            docker tag python-upload-s3:latest
+            ECR_REPO=$(cat ecr_repo.txt)
+            docker tag python-upload-s3:latest ${ECR_REPO}/python-upload-s3:1.0
+            docker push ${ECR_REPO}/python-upload-s3:1.0
       # - run:
       #     name: Install ruby stuff + TF Kitchen
       #     command: |

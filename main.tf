@@ -9,7 +9,7 @@ resource "aws_ecs_cluster" "example" {
 }
 
 resource "aws_cloudwatch_log_group" "example" {
-  name              = "example-app-nginx"
+  name              = "python-upload-s3"
   retention_in_days = 1
 }
 
@@ -19,8 +19,8 @@ resource "aws_ecs_task_definition" "example" {
   container_definitions = <<EOF
 [
   {
-    "name": "nginx",
-    "image": "nginx:1.13-alpine",
+    "name": "python-upload-s3",
+    "image": "python-upload-s3:latest",
     "essential": true,
     "portMappings": [
       {
@@ -30,7 +30,7 @@ resource "aws_ecs_task_definition" "example" {
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
-        "awslogs-group": "example-app-nginx",
+        "awslogs-group": "python-upload-s3",
         "awslogs-region": "eu-west-1"
       }
     },
