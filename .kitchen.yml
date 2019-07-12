@@ -9,8 +9,7 @@
    tags:
      Name: <%= ENV['INSTANCE_NAME'] %>
      created-by: test-kitchen
-     CostCentre: <%= ENV['COST_CENTRE'] %>
-     SquadName: <%= ENV['SQUAD_NAME'] %>
+     git-commit: <%= ENV['INSTANCE_NAME'] %>
 
  transport:
    connection_timeout: 10
