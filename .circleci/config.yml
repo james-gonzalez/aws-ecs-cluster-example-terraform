@@ -29,7 +29,7 @@ jobs:
             terraform plan -out=terraform.tfplan
             terraform apply -auto-approve
             terraform output -json > terraform-output.json
-            export ECR_REPO=$(terraform output -json | jq '.ecr_registry_url.value' -rcr_repo.txt)
+            export ECR_REPO=$(terraform output -json | jq '.ecr_registry_url.value' -r)
             terraform state pull > terraform-state.tfstate
             cp -v terraform.tfplan terraform-output.json terraform-state.tfstate /tmp/artifacts
       - run:
