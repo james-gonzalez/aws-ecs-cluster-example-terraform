@@ -21,7 +21,7 @@ jobs:
       - run:
           name: Build Docker image
           command: |
-            cd Docker && docker build -t python-upload-s3 .
+            cd docker && docker build -t python-upload-s3 .
             docker tag python-upload-s3:latest
       # - run:
       #     name: Install ruby stuff + TF Kitchen
