@@ -13,7 +13,7 @@ jobs:
           command: |
             export TF_VERSION="0.12.3"
             export DOCKER_VER="18.09.3"
-            apt-get update && apt-get -y install curl unzip gnupg2 procps jq curl
+            apt-get update && apt-get -y install curl unzip gnupg2 procps jq curl awscli
             curl -skO -L https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip
             curl -L -o /tmp/docker-$DOCKER_VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$DOCKER_VER.tgz
             unzip -o terraform_${TF_VERSION}_linux_amd64.zip -d /usr/local/bin/
