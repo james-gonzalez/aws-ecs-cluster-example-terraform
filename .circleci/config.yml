@@ -9,28 +9,27 @@ jobs:
           docker_layer_caching: true
           version: 18.09.3
       - run:
-          name: Install Docker client
-          command: |
-            set -x
-            VER="18.09.3"
-            curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
-            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
-            mv /tmp/docker/* /usr/bin
-      - run:
-          name: Install pre-reqs
+          name: Install pre-reqs (Terraform/Docker/etc)
           command: |
             export TF_VERSION="0.12.3"
+            export DOCKER_VER="18.09.3"
             apt-get update && apt-get -y install curl unzip gnupg2 procps jq curl
             curl -skO -L https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip
+            curl -L -o /tmp/docker-$DOCKER_VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$DOCKER_VER.tgz
             unzip -o terraform_${TF_VERSION}_linux_amd64.zip -d /usr/local/bin/
+            tar -xz -C /tmp -f /tmp/docker-$DOCKER_VER.tgz
+            mv /tmp/docker/* /usr/bin
+            docker version ## Gets version of client AND Server
             terraform --version
       - run:
           name: Run Terraform plan
           command: |
             terraform init
-            terraform plan
+            terraform plan -out=terraform.tfplan
             terraform apply -auto-approve
-            terraform output -json | jq '.ecr_registry_url.value' -r > ecr_repo.txt
+            terraform output -json > terraform-output.json
+            cat terraform-output.json | jq '.ecr_registry_url.value' -r > ecr_repo.txt
+            cp -v terraform.tfplan terraform-output.json /tmp/artifacts
       - run:
           name: Build Docker image
           command: |
