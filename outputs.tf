@@ -13,3 +13,7 @@ output "instance_sg_id" {
 output "instance_role" {
   value = aws_iam_role.default.name
 }
+
+output "ecr_registry_url" {
+  value = "${aws_ecr_repository.example.repository_url}"
+}

@@ -51,6 +51,7 @@ terraform apply
 | Name | Description |
 |------|-------------|
 | cluster\_id |  |
+| ecr\_registry\_url |  |
 | instance\_role |  |
 | instance\_sg\_id |  |
 | this\_iam\_instance\_profile\_id |  |

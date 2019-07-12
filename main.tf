@@ -9,7 +9,7 @@ resource "aws_ecs_cluster" "example" {
 }
 
 resource "aws_cloudwatch_log_group" "example" {
-  name              = "example"
+  name              = "example-app-nginx"
   retention_in_days = 1
 }
 
@@ -112,5 +112,6 @@ resource "aws_autoscaling_group" "asg" {
   }
 }
 
-
-
+resource "aws_ecr_repository" "example" {
+  name = "example-repo-s3-put"
+}
