@@ -44,8 +44,8 @@ jobs:
             $(aws ecr get-login --no-include-email --region eu-west-1)
             docker tag example-repo-s3-put:latest ${ECR_REPO}:latest
             docker push ${ECR_REPO}:latest
-            docker tag example-repo-s3-put:latest ${ECR_REPO}:${CIRCLE_SHA1}
-            docker push ${ECR_REPO}:${CIRCLE_SHA1:0:7} ## Keeping only first 7 chars
+            docker tag example-repo-s3-put:latest ${ECR_REPO}:${CIRCLE_SHA1:0:7} ## Keeping only first 7 chars
+            docker push ${ECR_REPO}:${CIRCLE_SHA1:0:7}
       # - run:
       #     name: Install ruby stuff + TF Kitchen
       #     command: |
