@@ -8,6 +8,11 @@ resource "aws_ecs_cluster" "example" {
   name = var.ecs_cluster_name
 }
 
+resource "aws_s3_bucket" "data" {
+  bucket = var.s3_bucket_name
+  acl    = "private"
+}
+
 resource "aws_cloudwatch_log_group" "example" {
   name              = "example-repo-s3-put"
   retention_in_days = 1
