@@ -38,6 +38,7 @@ jobs:
           name: Build Docker image
           command: |
             ls -l /tmp/artifacts
+            cat /tmp/artifacts/terraform-output.json | jq '.'
             cd docker && docker build -t example-repo-s3-put .
             export ECR_REPO=$(jq '.ecr_registry_url.value' -r /tmp/artifacts)
             echo "Using: ${ECR_REPO}"
