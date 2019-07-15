@@ -45,7 +45,7 @@ jobs:
             docker tag example-repo-s3-put:latest ${ECR_REPO}:latest
             docker push ${ECR_REPO}:latest
             docker tag example-repo-s3-put:latest ${ECR_REPO}:${CIRCLE_SHA1}
-            docker push ${ECR_REPO}:${CIRCLE_SHA1}
+            docker push ${ECR_REPO}:${CIRCLE_SHA1:0:7} ## Keeping only first 7 chars
       # - run:
       #     name: Install ruby stuff + TF Kitchen
       #     command: |
