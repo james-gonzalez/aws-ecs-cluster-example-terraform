@@ -13,13 +13,14 @@ jobs:
           command: |
             export TF_VERSION="0.12.3"
             export DOCKER_VER="18.09.3"
-            apt-get update && apt-get -y install curl unzip gnupg2 procps jq curl awscli
+            apt-get update && apt-get -y install curl unzip gnupg2 procps jq curl
             curl -skO -L https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip
             curl -L -o /tmp/docker-$DOCKER_VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$DOCKER_VER.tgz
             unzip -o terraform_${TF_VERSION}_linux_amd64.zip -d /usr/local/bin/
             tar -xz -C /tmp -f /tmp/docker-$DOCKER_VER.tgz
             mv /tmp/docker/* /usr/bin
             docker version ## Gets version of client AND Server
+            pip install awscli --upgrade
             terraform --version
             aws --version
             mkdir -p /tmp/artifacts ## Making the artifacts dir, not sure why I need to.
