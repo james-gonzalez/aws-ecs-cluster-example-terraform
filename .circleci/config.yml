@@ -32,13 +32,13 @@ jobs:
             terraform plan -out=terraform.tfplan
             terraform apply -auto-approve
             terraform output -json > terraform-output.json
-            export ECR_REPO=$(terraform output -json | jq '.ecr_registry_url.value' -r)
             terraform state pull > terraform-state.tfstate
             cp -v terraform.tfplan terraform-output.json terraform-state.tfstate /tmp/artifacts
       - run:
           name: Build Docker image
           command: |
             cd docker && docker build -t python-upload-s3 .
+            export ECR_REPO=$(terraform output -json | jq '.ecr_registry_url.value' -r)
             echo "Using ${ECR_REPO}"
             $(aws ecr get-login --no-include-email --region eu-west-1)
             docker tag python-upload-s3:latest ${ECR_REPO}/python-upload-s3:1.0
