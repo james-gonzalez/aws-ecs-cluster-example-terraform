@@ -15,5 +15,9 @@ output "instance_role" {
 }
 
 output "ecr_registry_url" {
-  value = "${aws_ecr_repository.example.repository_url}"
+  value = aws_ecr_repository.example.repository_url
+}
+
+output "s3_data_bucket" {
+  value = aws_s3_bucket.data.id
 }

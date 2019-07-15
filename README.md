@@ -54,6 +54,7 @@ terraform apply
 | ecr\_registry\_url |  |
 | instance\_role |  |
 | instance\_sg\_id |  |
+| s3\_data\_bucket |  |
 | this\_iam\_instance\_profile\_id |  |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
