@@ -9,7 +9,7 @@ resource "aws_ecs_cluster" "example" {
 }
 
 resource "aws_cloudwatch_log_group" "example" {
-  name              = "python-upload-s3"
+  name              = "example-repo-s3-put"
   retention_in_days = 1
 }
 
@@ -19,8 +19,8 @@ resource "aws_ecs_task_definition" "example" {
   container_definitions = <<EOF
 [
   {
-    "name": "python-upload-s3",
-    "image": "python-upload-s3:latest",
+    "name": "example-repo-s3-put",
+    "image": "example-repo-s3-put:latest",
     "essential": true,
     "portMappings": [
       {
@@ -30,7 +30,7 @@ resource "aws_ecs_task_definition" "example" {
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
-        "awslogs-group": "python-upload-s3",
+        "awslogs-group": "example-repo-s3-put",
         "awslogs-region": "eu-west-1"
       }
     },
