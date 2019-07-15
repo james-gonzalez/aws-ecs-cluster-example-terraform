@@ -38,9 +38,8 @@ jobs:
           name: Build Docker image
           command: |
             ls -l /tmp/artifacts
-            cat /tmp/artifacts/terraform-output.json | jq '.'
+            ECR_REPO=$(cat /tmp/artifacts/terraform-output.json | jq -r '.ecr_registry_url.value')
             cd docker && docker build -t example-repo-s3-put .
-            export ECR_REPO=$(jq '.ecr_registry_url.value' -r /tmp/artifacts)
             echo "Using: ${ECR_REPO}"
             $(aws ecr get-login --no-include-email --region eu-west-1)
             docker tag example-repo-s3-put:latest ${ECR_REPO}:latest
