@@ -41,8 +41,8 @@ jobs:
             export ECR_REPO=$(jq '.ecr_registry_url.value' -r /tmp/artifacts)
             echo "Using ${ECR_REPO}"
             $(aws ecr get-login --no-include-email --region eu-west-1)
-            docker tag python-upload-s3:latest ${ECR_REPO}/python-upload-s3:1.0
-            docker push ${ECR_REPO}/python-upload-s3:1.0
+            docker tag example-repo-s3-put:latest ${ECR_REPO}:latest
+            docker push ${ECR_REPO}:1.0
       # - run:
       #     name: Install ruby stuff + TF Kitchen
       #     command: |
