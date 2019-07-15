@@ -37,9 +37,10 @@ jobs:
       - run:
           name: Build Docker image
           command: |
-            cd docker && docker build -t python-upload-s3 .
+            ls -l /tmp/artifacts
+            cd docker && docker build -t example-repo-s3-put .
             export ECR_REPO=$(jq '.ecr_registry_url.value' -r /tmp/artifacts)
-            echo "Using ${ECR_REPO}"
+            echo "Using: ${ECR_REPO}"
             $(aws ecr get-login --no-include-email --region eu-west-1)
             docker tag example-repo-s3-put:latest ${ECR_REPO}:latest
             docker push ${ECR_REPO}:1.0
