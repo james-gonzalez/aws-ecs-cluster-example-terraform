@@ -1,0 +1,33 @@
+ ---
+ driver:
+   name: ec2
+   region: <%= ENV['AWS_REGION'] %>
+   subnet_id: <%= ENV['AWS_SUBNET'] %>
+   instance_type: t2.small
+   associate_public_ip: <%= ENV['USE_PUBLIC_IP'] %>
+   interface: <%= ENV['USE_INTERFACE'] %>
+   tags:
+     Name: <%= ENV['INSTANCE_NAME'] %>
+     created-by: test-kitchen
+     git-commit: <%= ENV['INSTANCE_NAME'] %>
+
+ transport:
+   connection_timeout: 10
+   connection_retries: 5
+   username: centos
+
+ platforms:
+   - name: centos-7
+     driver:
+       image_id: <%= ENV['PACKER_AMI'] %>
+     transport:
+       username: centos
+
+ verifier:
+   name: inspec
+
+ suites:
+   - name: <%= ENV['INSTANCE_NAME'] %>
+     verifier:
+       inspec_tests:
+         - test/integration/default

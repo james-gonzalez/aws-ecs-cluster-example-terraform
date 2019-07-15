@@ -1,0 +1,4 @@
+[{
+     "schedule":"@every 60m",
+     "command":"python3 ${HOME}/test_s3.py"
+ }]
