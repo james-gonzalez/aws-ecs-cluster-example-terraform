@@ -20,7 +20,7 @@ resource "aws_ecs_task_definition" "example" {
 [
   {
     "name": "example-repo-s3-put",
-    "image": "example-repo-s3-put:latest",
+    "image": "${aws_ecr_repository.example.repository_url}:latest",
     "essential": true,
     "portMappings": [
       {
